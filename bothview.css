@@ -1,0 +1,77 @@
+/*BothView by XiLaiTL|MIT License|English-Chinese*/
+/*You can copy the code below and paste it in the top of theme css file which you want*/
+
+/*
+当点击显示侧边栏时，类.pin-outline被激活（添加到body），类.open（添加到sidebar）
+当点击文件时，类.active-tab-files被激活（添加到sidebar）
+当点击大纲时，类.active-tab-outline被激活（添加到sidebar）
+*//*When you toggle sidebar, the class named ".pin-outline" is adding in the <body> and the class named ".open" is adding in the <div>#typora-sidebar. As clicking "Files", the class named ".active-tab-files" is adding in the <div>#typora-sidebar while clicking "Outline" the  the class named ".active-tab-outline" is adding in it.
+*/
+
+/*=======================================================================*/
+/*初始设置，让sidebar占满整个屏幕并让content显示在上方，调节其他部分依旧在左侧*//*Firstly setting for making sidebar cover the whole view and let content show above the header, and remaining other part at right area*/
+
+/*更新层叠顺序，让content显示在header上方，并且依然保留下方调节sidebar大小的能力*//*Renew the z-index and width*/
+header{ z-index: -1;}
+.pin-outline header:hover ~ footer{ z-index: -2; }
+
+/*设置【侧边栏】满宽度 *//*Set sidebar's width*/
+.typora-node.pin-outline:not(.megamenu-opened):not(.typora-sourceview-on) #typora-sidebar{ width: 100% }
+
+/*设置【信息侧边栏】宽度 *//*Set other parts' width*/
+.info-panel-tab-wrapper { width: var(--sidebar-width);}
+.sidebar-footer{ width: var(--sidebar-width);}
+#file-library-search{ width: var(--sidebar-width);}
+
+/*=======================================================================*/
+/*逻辑设置，当点击“显示侧边栏时”，【内容】被移动到中间，留出两侧分别放置【文件】和【大纲】*//*Logical setting for you toggling sidebar, move the content to the middle area and remain the left area for Files and right area for Outline*/
+
+/*当点击“显示侧边栏”时 【内容】 *//*When toggling sidebar, move the content to the middle area*/
+.pin-outline content {
+    min-height: 0%;
+    height:calc(100% - 30px);
+    left: var(--sidebar-width);
+    right: var(--sidebar-width);
+}
+/*-----------------------------------------------------------------------*/
+/*当点击“文件”时，【大纲侧边栏】同时显示在右侧*//*When clicking "Files", move outline bar to right area*/
+
+/*点击“文件”时 【文件侧边栏】*//*When clicking "Files", set the files bar*/
+.pin-outline .active-tab-files #file-library {
+    width: var(--sidebar-width);
+    min-width: 0%;
+}
+/*点击“文件”时 【大纲侧边栏】*//*When clicking "Files", set the outline bar*/
+.pin-outline .active-tab-files #outline-content{
+    position: fixed;
+    width: var(--sidebar-width);
+    min-width: 0%;
+    right: 0;
+    left: calc(100% - var(--sidebar-width));
+    display: block;
+}
+/*-----------------------------------------------------------------------*/
+/*当点击“大纲”时，【大纲侧边栏】显示在左侧，右侧空白由【文件侧边栏】的div去填补*//*When clicking "Outline", move outline bar to left area and let files bar fill the right area which is empty*/
+
+/*点击“大纲”时 【大纲侧边栏】*//*When clicking "Outline", set the outline bar*/
+.pin-outline .active-tab-outline #outline-content {
+    background-color: var(--side-bar-bg-color);
+    position: relative;
+    width: var(--sidebar-width);
+    min-width: 0%;
+    left: 0;
+    display: block;
+}
+/*点击“大纲”时 【文件侧边栏】*//*When clicking "Outline", set the files bar*/
+.pin-outline .active-tab-outline #file-library{
+    background-color: var(--bg-color);
+    position: fixed;
+    top: 0;
+    width: var(--sidebar-width);
+    left: calc(100% - var(--sidebar-width));
+    display: block !important;
+}
+.pin-outline .active-tab-outline #file-library div{ /*Just let files bar be an empty bg-color div*/
+    display:none
+}
+/*=======================================================================*/
