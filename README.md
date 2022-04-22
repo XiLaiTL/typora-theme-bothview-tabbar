@@ -4,15 +4,15 @@
 layout: theme
 title: BothView-TabBar
 category: theme
-homepage: 
-download: 
+homepage: https://github.com/XiLaiTL/typora-theme-bothview-tabbar/
+download: https://github.com/XiLaiTL/typora-theme-bothview-tabbar/releases/download/v0.0.1/typora-theme-bothview-tabbar.zip
 author: XiLaiTL
 thumbnail: bothview-tabbar.jpg
 typora-root-url: ../../
 typora-copy-images-to: ../../media/theme/bothview-tabbar
 ---
 
-![header](media\thumbnail\bothview-tabbar.jpg)
+![header](/media/thumbnail/bothview-tabbar.jpg)
 
 # Both Sidebars and Tab Bar for Typora
 The BothView theme makes you use files list sidebar and outline sidebar together.
@@ -33,11 +33,11 @@ When using BothView theme, you can modify the sidebar size by dragging the  resi
 
 |                         Raw BothView                         |
 | :----------------------------------------------------------: |
-| ![Raw BothView when toggling sidebar](media\theme\bothview-tabbar\bothview.png) |
+| ![Raw BothView when toggling sidebar](/media/theme/bothview-tabbar/bothview.png) |
 
 |                          Raw TabBar                          |
 | :----------------------------------------------------------: |
-| ![Raw TabBar when toggling sidebar](media\theme\bothview-tabbar\tabbar.png) |
+| ![Raw TabBar when toggling sidebar](/media/theme/bothview-tabbar/tabbar.png) |
 
 
 
@@ -64,11 +64,11 @@ When using BothView theme, you can modify the sidebar size by dragging the  resi
 
 When BothView was using with Github theme, 
 
-![using-with-Github-theme](media\theme\bothview-tabbar\github-theme-with-bothview.png)
+![using-with-Github-theme](/media/theme/bothview-tabbar/github-theme-with-bothview.png)
 
 When TabBar was using with Github theme, 
 
-![using-with-Github-theme](media\theme\bothview-tabbar\github-theme-with-tabbar.png)
+![using-with-Github-theme](/media/theme/bothview-tabbar/github-theme-with-tabbar.png)
 
 
 
