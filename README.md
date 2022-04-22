@@ -45,13 +45,13 @@ When using BothView theme, you can modify the sidebar size by dragging the  resi
 
 ### Add the feature in the theme you like
 
-- Open the `bothview.css` or the `tabbar.css`
+- Open the [`bothview.css`](https://raw.githubusercontent.com/XiLaiTL/typora-theme-bothview-tabbar/main/bothview.css) or the [`tabbar.css`](https://raw.githubusercontent.com/XiLaiTL/typora-theme-bothview-tabbar/main/tabbar.css)
 - Copy the whole file text and paste it to the top of the theme `.css` file you want (you can open the folder in ` preferences > appearance > themes`).
 - Launch or restart Typora and choose the theme from the menu.
 
 ### Install the raw style (Just add the feature, not recommended)
 
-- Download the [zipped themes package]().
+- Download the [zipped themes package](https://github.com/XiLaiTL/typora-theme-bothview-tabbar/releases/download/v0.0.1/typora-theme-bothview-tabbar.zip).
 - Copy the chosen `.css` file(s) to your Typora theme library (you can open the folder in ` preferences > appearance > themes`).
 - Launch or restart Typora and choose the theme from the menu.
 
