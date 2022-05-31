@@ -5,7 +5,7 @@ layout: theme
 title: BothView-TabBar
 category: theme
 homepage: https://github.com/XiLaiTL/typora-theme-bothview-tabbar/
-download: https://github.com/XiLaiTL/typora-theme-bothview-tabbar/releases/download/v0.0.1/typora-theme-bothview-tabbar.zip
+download: https://github.com/XiLaiTL/typora-theme-bothview-tabbar/releases
 author: XiLaiTL
 thumbnail: bothview-tabbar.jpg
 typora-root-url: ../../
