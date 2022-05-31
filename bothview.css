@@ -49,6 +49,7 @@ header{ z-index: -1;}
     right: 0;
     left: calc(100% - var(--sidebar-width));
     display: block;
+    padding-bottom: 84px;
 }
 /*-----------------------------------------------------------------------*/
 /*当点击“大纲”时，【大纲侧边栏】显示在左侧，右侧空白由【文件侧边栏】的div去填补*//*When clicking "Outline", move outline bar to left area and let files bar fill the right area which is empty*/
