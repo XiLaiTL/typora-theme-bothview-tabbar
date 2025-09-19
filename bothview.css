@@ -1,5 +1,18 @@
+/*BothView by XiLaiTL|MIT License|English-Chinese*/
+/*You can copy the code below and paste it in the top of theme css file which you want*/
+
+/*
+当点击显示侧边栏时，类.pin-outline被激活（添加到body），类.open（添加到sidebar）
+当点击文件时，类.active-tab-files被激活（添加到sidebar）
+当点击大纲时，类.active-tab-outline被激活（添加到sidebar）
+*//*When you toggle sidebar, the class named ".pin-outline" is adding in the <body> and the class named ".open" is adding in the <div>#typora-sidebar. As clicking "Files", the class named ".active-tab-files" is adding in the <div>#typora-sidebar while clicking "Outline" the  the class named ".active-tab-outline" is adding in it.
+*/
+
 /*=======================================================================*/
 /* 基础设定 basic */
+
+/*初始设置，让sidebar占满整个屏幕并让content显示在上方，调节其他部分依旧在左侧*/
+/*Firstly setting for making sidebar cover the whole view and let content show above the header, and remaining other part at right area*/
 
 /* 层级调整  header { z-index: 900; }
 由于sidebar是在header下的，需要让content高于header
@@ -169,4 +182,5 @@ content::-webkit-scrollbar {
     display:none
 }
 /*=======================================================================*/
+
 
