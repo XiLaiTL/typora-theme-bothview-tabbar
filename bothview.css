@@ -1,47 +1,135 @@
-/*BothView by XiLaiTL|MIT License|English-Chinese*/
-/*You can copy the code below and paste it in the top of theme css file which you want*/
-
-/*
-当点击显示侧边栏时，类.pin-outline被激活（添加到body），类.open（添加到sidebar）
-当点击文件时，类.active-tab-files被激活（添加到sidebar）
-当点击大纲时，类.active-tab-outline被激活（添加到sidebar）
-*//*When you toggle sidebar, the class named ".pin-outline" is adding in the <body> and the class named ".open" is adding in the <div>#typora-sidebar. As clicking "Files", the class named ".active-tab-files" is adding in the <div>#typora-sidebar while clicking "Outline" the  the class named ".active-tab-outline" is adding in it.
-*/
-
 /*=======================================================================*/
-/*初始设置，让sidebar占满整个屏幕并让content显示在上方，调节其他部分依旧在左侧*//*Firstly setting for making sidebar cover the whole view and let content show above the header, and remaining other part at right area*/
+/* 基础设定 basic */
 
-/*更新层叠顺序，让content显示在header上方，并且依然保留下方调节sidebar大小的能力*//*Renew the z-index and width*/
-header{ z-index: -1;}
-.pin-outline header:hover ~ footer{ z-index: -2; }
+/* 层级调整  header { z-index: 900; }
+由于sidebar是在header下的，需要让content高于header
+top-titlebar要高于在header下的sidebar(z-index:1)
+.megamenu-opened 时由于content调整了，所以要顺带拉高层级，同时header要在最顶层
+*/
+/* layer adjust header { z-index: 900; }
+cause the sidebar is under header, we need make content layer higher with header
+and top-titlerbar layer needs to be higher with sidebar
+also needs to adjust layer in the megamenu-opened view
+*/
+#top-titlebar { z-index: 2; }
+content { z-index: 901; }
+.show-footer footer.ty-footer { z-index: 902; }
+.megamenu-opened .megamenu-content { z-index: 903; }
+.megamenu-opened header { z-index: 904; }
 
-/*设置【侧边栏】满宽度 *//*Set sidebar's width*/
+/* 设置【侧边栏】占满宽度 核心策略 */
+/*Set sidebar's width*/
 .typora-node.pin-outline:not(.megamenu-opened):not(.typora-sourceview-on) #typora-sidebar{ width: 100% }
 
-/*设置【信息侧边栏】宽度 *//*Set other parts' width*/
+/* 设置【信息侧边栏】宽度 */
+/*Set other parts' width*/
 .info-panel-tab-wrapper { width: var(--sidebar-width);}
 .sidebar-footer{ width: var(--sidebar-width);}
 #file-library-search{ width: var(--sidebar-width);}
 
-/*=======================================================================*/
-/*逻辑设置，当点击“显示侧边栏时”，【内容】被移动到中间，留出两侧分别放置【文件】和【大纲】*//*Logical setting for you toggling sidebar, move the content to the middle area and remain the left area for Files and right area for Outline*/
+/*-----------------------------------------------------------------------*/
+/* 适应调整 footer，只出现在content区域*/
+/* adjust footer width */
+.pin-outline footer.ty-footer {
+    width: calc(100% - 2 * var(--sidebar-width));
+}
 
-/*当点击“显示侧边栏”时 【内容】 *//*When toggling sidebar, move the content to the middle area*/
+/* 适应调整 titlebar由于sidebar拉长，要处理下和content之间的缝隙*/
+/* adjust no gaps between titlebar and content */
+#top-titlebar { 
+    height: var(--header-height);
+    background-color: var(--side-bar-bg-color);
+}
+
+/* 适应调整 由于层级变动了，显示偏好设置面板时，隐藏顶部的标题栏 */
+/* adjust hide the titlebar on the preference view because layer changed */
+.show-preference-panel #w-titlebar-left { display: none; }
+.show-preference-panel #top-titlebar {
+    background-color: var(--bg-color);
+}
+
+/* 适应调整-美化 由于右侧多了【大纲】栏，如果titlebar铺满会更好看*/
+/* adjust beautify full-width titlebar */
+.typora-node.pin-outline:not(.megamenu-opened):not(.typora-sourceview-on) #top-titlebar {
+    width: 100%;
+    left: var(--header-left);
+}
+
+/* 适应调整 按钮的高度下降，用于适配top-titlebar的美化 */
+/* adjust lower button for top-titlebar */
+.info-panel-tab-wrapper {
+    height: 28px;
+}
+.ty-tab-wrapper {
+    height: 28px;
+}
+#info-panel-tab-file {
+    margin-top: 28px;
+}
+#info-panel-tab-outline {
+    margin-top: 28px;
+}
+#info-panel-tab-search {
+    margin-top: 28px;
+}
+
+/* 适应调整 美化 显示【查找】时，【查找】和它的返回【文件】按钮 */
+/* adjust beautify top of search and file button when searching*/
+.ty-show-search #info-panel-tab-search-back {
+    margin-top: 28px;
+}
+.ty-show-search #info-panel-tab-search {
+    margin-top: 28px;
+}
+
+/* 美化 内容、底栏、底栏按钮的圆角矩形 */
+/* beautify RoundRect with content,footer,footer-item */
+content {
+    border-radius: 25px;
+}
+.show-footer footer.ty-footer { 
+    border-radius: 25px;
+}
+.footer-item {
+    border-radius: 25px;
+}
+
+/* 美化 隐藏滚动条 */
+/* beautify hide scrollbar */
+content::-webkit-scrollbar {
+  display: none;
+}
+
+/*-----------------------------------------------------------------------*/
+/*逻辑设置，当点击“显示侧边栏时”，【内容】被移动到中间，留出两侧分别放置【文件】和【大纲】*/
+/*Logical setting for you toggling sidebar, move the content to the middle area and remain the left area for Files and right area for Outline*/
+
+/*当点击“显示侧边栏”时 【内容】 */
+/*When toggling sidebar, move the content to the middle area*/
 .pin-outline content {
     min-height: 0%;
-    height:calc(100% - 30px);
+    height:calc(100% - var(--top-titlebar-height));
     left: var(--sidebar-width);
     right: var(--sidebar-width);
 }
-/*-----------------------------------------------------------------------*/
-/*当点击“文件”时，【大纲侧边栏】同时显示在右侧*//*When clicking "Files", move outline bar to right area*/
 
-/*点击“文件”时 【文件侧边栏】*//*When clicking "Files", set the files bar*/
+.pin-outline #spell-check-panel {
+    margin-right: var(--sidebar-width);
+}
+
+/*-----------------------------------------------------------------------*/
+/*当点击“文件”时，【大纲侧边栏】同时显示在右侧*/
+/*When clicking "Files", move outline bar to right area*/
+
+/*点击“文件”时 【文件侧边栏】*/
+/*When clicking "Files", set the files bar*/
 .pin-outline .active-tab-files #file-library {
     width: var(--sidebar-width);
     min-width: 0%;
 }
-/*点击“文件”时 【大纲侧边栏】*//*When clicking "Files", set the outline bar*/
+
+/*点击“文件”时 【大纲侧边栏】*/
+/*When clicking "Files", set the outline bar*/
 .pin-outline .active-tab-files #outline-content{
     position: fixed;
     width: var(--sidebar-width);
@@ -51,10 +139,13 @@ header{ z-index: -1;}
     display: block;
     padding-bottom: 84px;
 }
-/*-----------------------------------------------------------------------*/
-/*当点击“大纲”时，【大纲侧边栏】显示在左侧，右侧空白由【文件侧边栏】的div去填补*//*When clicking "Outline", move outline bar to left area and let files bar fill the right area which is empty*/
 
-/*点击“大纲”时 【大纲侧边栏】*//*When clicking "Outline", set the outline bar*/
+/*-----------------------------------------------------------------------*/
+/*当点击“大纲”时，【大纲侧边栏】显示在左侧，右侧空白由【文件侧边栏】的div去填补*/
+/*When clicking "Outline", move outline bar to left area and let files bar fill the right area which is empty*/
+
+/*点击“大纲”时 【大纲侧边栏】*/
+/*When clicking "Outline", set the outline bar*/
 .pin-outline .active-tab-outline #outline-content {
     background-color: var(--side-bar-bg-color);
     position: relative;
@@ -63,9 +154,11 @@ header{ z-index: -1;}
     left: 0;
     display: block;
 }
-/*点击“大纲”时 【文件侧边栏】*//*When clicking "Outline", set the files bar*/
+
+/*点击“大纲”时 【文件侧边栏】*/
+/*When clicking "Outline", set the files bar*/
 .pin-outline .active-tab-outline #file-library{
-    background-color: var(--bg-color);
+    background-color: var(--side-bar-bg-color);
     position: fixed;
     top: 0;
     width: var(--sidebar-width);
@@ -76,3 +169,4 @@ header{ z-index: -1;}
     display:none
 }
 /*=======================================================================*/
+
